@@ -1,0 +1,908 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>XAHAU FLAGS TOOL</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-color: #ce91e2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-2 pb-4">
+      <h1 id="flagenabletor">XAHAU FLAGS TOOL</h1>
+
+      <button class="btn mb-3 btn-dark" style="display: block" id="sub">
+        Account: ... waiting sign in ...
+      </button>
+      <p></p>
+      <button class="btn mb-3 btn-dark" id="auth" style="display: block">
+        Click to sign in
+      </button>
+      <button class="btn mb-3 btn-warning" style="display: none" id="logout">
+        Logout
+      </button>
+      <p></p>
+
+      <h2 id="titol1" style="display: none">XAHAU MAINNET</h2>
+
+      <button
+        class="btn mb-3 btn-primary"
+        style="display: none"
+        id="signrequest1"
+      >
+        ENABLE Flag: 1. asfRequireDest
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-primary"
+        style="display: none"
+        id="signrequest2"
+      >
+        DISABLE Flag: 1. asfRequireDest
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-success"
+        style="display: none"
+        id="signrequest3"
+      >
+        ENABLE Flag: 2. asfRequireAuth
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-success"
+        style="display: none"
+        id="signrequest4"
+      >
+        DISABLE Flag: 2. asfRequireAuth
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-secondary"
+        style="display: none"
+        id="signrequest5"
+      >
+        ENABLE Flag: 3. asfDisallowXRP
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-secondary"
+        style="display: none"
+        id="signrequest6"
+      >
+        DISABLE Flag: 3. asfDisallowXRP
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-danger"
+        style="display: none"
+        id="signrequest7"
+      >
+        ENABLE Flag: 4. asfDisableMaster
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-danger"
+        style="display: none"
+        id="signrequest8"
+      >
+        DISABLE Flag: 4. asfDisableMaster
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-primary"
+        style="display: none"
+        id="signrequest9"
+      >
+        ENABLE Flag: 5. asfAccountTxnID
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-primary"
+        style="display: none"
+        id="signrequest10"
+      >
+        DISABLE Flag: 5. asfAccountTxnID
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-warning"
+        style="display: none"
+        id="signrequest11"
+      >
+        ENABLE Flag: 6. asfNoFreeze
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-warning"
+        style="display: none"
+        id="signrequest12"
+      >
+        Flag: 6. asfNoFreeze Can't be disabled
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-info"
+        style="display: none"
+        id="signrequest13"
+      >
+        ENABLE Flag: 7. asfGlobalFreeze
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-info"
+        style="display: none"
+        id="signrequest14"
+      >
+        DISABLE Flag: 7. asfGlobalFreeze
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-primary"
+        style="display: none"
+        id="signrequest15"
+      >
+        ENABLE Flag: 8. asfDefaultRipple
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-primary"
+        style="display: none"
+        id="signrequest16"
+      >
+        DISABLE Flag: 8. asfDefaultRipple
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-success"
+        style="display: none"
+        id="signrequest17"
+      >
+        ENABLE Flag: 9. asfDepositAuth
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-success"
+        style="display: none"
+        id="signrequest18"
+      >
+        DISABLE Flag: 9. asfDepositAuth
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-info"
+        style="display: none"
+        id="signrequest21"
+      >
+        ENABLE Flag: 11. asfTshCollect
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-info"
+        style="display: none"
+        id="signrequest22"
+      >
+        DISABLE Flag: 11. asfTshCollect
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-secondary"
+        style="display: none"
+        id="signrequest23"
+      >
+        ENABLE Flag: 12. asfDisallowIncomingNFTokenOffer
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-secondary"
+        style="display: none"
+        id="signrequest24"
+      >
+        DISABLE Flag: 12. asfDisallowIncomingNFTokenOffer
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-info"
+        style="display: none"
+        id="signrequest25"
+      >
+        ENABLE Flag: 13. asfDisallowIncomingCheck
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-info"
+        style="display: none"
+        id="signrequest26"
+      >
+        DISABLE Flag: 13. asfDisallowIncomingCheck
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-primary"
+        style="display: none"
+        id="signrequest27"
+      >
+        ENABLE Flag: 14. asfDisallowIncomingPayChan
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-primary"
+        style="display: none"
+        id="signrequest28"
+      >
+        DISABLE Flag: 14. asfDisallowIncomingPayChan
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-success"
+        style="display: none"
+        id="signrequest29"
+      >
+        ENABLE Flag: 15. asfDisallowIncomingTrustline
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-success"
+        style="display: none"
+        id="signrequest30"
+      >
+        DISABLE Flag: 15. asfDisallowIncomingTrustline
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-secondary"
+        style="display: none"
+        id="signrequest31"
+      >
+        ENABLE Flag: 16. asfDisallowIncomingRemit
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-secondary"
+        style="display: none"
+        id="signrequest32"
+      >
+        DISABLE Flag: 16. asfDisallowIncomingRemit
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-warning"
+        style="display: none"
+        id="minterbuton"
+      >
+        Paste the Authorized Minter you want to authorize:
+      </button>
+      <td>
+        <input
+          type="text"
+          style="display: none"
+          id="minterfield"
+          value=""
+          size="55"
+        />
+      </td>
+      <p></p>
+      <button
+        class="btn mb-3 btn-warning"
+        style="display: none"
+        id="signrequest19"
+      >
+        Click here to ENABLE Flag: 10. asfAuthorizedNFTokenMinter
+      </button>
+      <p></p>
+
+      <button
+        class="btn mb-3 btn-warning"
+        style="display: none"
+        id="signrequest20"
+      >
+        Click here to DISABLE/REMOVE a previous authorized minter. Flag: 10.
+        asfAuthorizedNFTokenMinter
+      </button>
+      <p></p>
+
+      <p></p>
+      <button
+        class="btn mb-3 btn-success btn-lg"
+        style="display: none"
+        id="getflags1"
+      >
+        Click to get account info flags
+      </button>
+
+      <p></p>
+      <table>
+        <tr valign="top">
+          <td>
+            <p align="left">
+              <textarea
+                id="resultfield1"
+                cols="70"
+                rows="18"
+                style="display: none"
+              ></textarea>
+            </p>
+          </td>
+        </tr>
+      </table>
+
+      <a
+        href="https://skunk-proper-smoothly.ngrok-free.app/tools"
+        id="goback"
+        style="display: none"
+        >Go back to Ridworld Tools</a
+      >
+    </div>
+
+    <script type="module">
+      import "https://xumm.app/assets/cdn/xumm-oauth2-pkce.min.js?v=2.7.1";
+
+      const xumm = new XummPkce("12e14dd5-83b3-418e-a7dc-430c434513e5", {
+        implicit: true,
+        redirectUrl: document.location.href + "?custom_state=test",
+      });
+
+      const signedIn = async () => {
+        const state = await xumm.state();
+        if (state?.me?.sub) {
+          document.getElementById("sub").innerText =
+            "Account:  " + state.me.sub;
+          document.getElementById("auth").style.display = "none";
+          document.getElementById("logout").style.display = "block";
+          document.getElementById("titol1").style.display = "block";
+          document.getElementById("signrequest1").style.display = "block";
+          document.getElementById("signrequest2").style.display = "block";
+          document.getElementById("signrequest3").style.display = "block";
+          document.getElementById("signrequest4").style.display = "block";
+          document.getElementById("signrequest5").style.display = "block";
+          document.getElementById("signrequest6").style.display = "block";
+          document.getElementById("signrequest7").style.display = "block";
+          document.getElementById("signrequest8").style.display = "block";
+          document.getElementById("signrequest9").style.display = "block";
+          document.getElementById("signrequest10").style.display = "block";
+          document.getElementById("signrequest11").style.display = "block";
+          document.getElementById("signrequest12").style.display = "block";
+          document.getElementById("signrequest13").style.display = "block";
+          document.getElementById("signrequest14").style.display = "block";
+          document.getElementById("signrequest15").style.display = "block";
+          document.getElementById("signrequest16").style.display = "block";
+          document.getElementById("signrequest17").style.display = "block";
+          document.getElementById("signrequest18").style.display = "block";
+          document.getElementById("signrequest19").style.display = "block";
+
+          document.getElementById("minterbuton").style.display = "block";
+          document.getElementById("minterfield").style.display = "block";
+          document.getElementById("signrequest20").style.display = "block";
+
+          document.getElementById("signrequest21").style.display = "block";
+          document.getElementById("signrequest22").style.display = "block";
+          document.getElementById("signrequest23").style.display = "block";
+          document.getElementById("signrequest24").style.display = "block";
+          document.getElementById("signrequest25").style.display = "block";
+          document.getElementById("signrequest26").style.display = "block";
+          document.getElementById("signrequest27").style.display = "block";
+          document.getElementById("signrequest28").style.display = "block";
+          document.getElementById("signrequest29").style.display = "block";
+          document.getElementById("signrequest30").style.display = "block";
+          document.getElementById("signrequest31").style.display = "block";
+          document.getElementById("signrequest32").style.display = "block";
+
+          document.getElementById("getflags1").style.display = "block";
+          document.getElementById("resultfield1").style.display = "block";
+          document.getElementById("goback").style.display = "block";
+        }
+      };
+
+      document.getElementById("auth").onclick = () =>
+        xumm.authorize().catch((e) => console.log("e", e));
+
+      //MAINNET 21337
+      document.getElementById("signrequest1").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 1,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest2").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 1,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest3").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 2,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest4").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 2,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest5").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 3,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest6").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 3,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest7").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 4,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest8").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 4,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest9").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 5,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest10").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 5,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest11").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 6,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest12").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 6,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest13").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 7,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest14").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 7,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest15").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 8,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest16").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 8,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest17").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 9,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest18").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 9,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest19").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          NFTokenMinter: minterfield.value,
+          SetFlag: 10,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest20").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 10,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest21").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 11,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest22").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 11,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest23").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 12,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest24").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 12,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest25").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 13,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest26").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 13,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest27").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 14,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest28").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 14,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest29").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 15,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest30").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 15,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("signrequest31").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          SetFlag: 16,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+      document.getElementById("signrequest32").onclick = async () => {
+        const { sdk } = await xumm.state();
+        const payload = await sdk.payload.create({
+          TransactionType: "AccountSet",
+          ClearFlag: 16,
+        });
+        if (payload.pushed) {
+          window.open(payload.next.always);
+        }
+      };
+
+      document.getElementById("logout").onclick = () => {
+        xumm.logout();
+        document.getElementById("sub").innerText =
+          "Account: ... waiting sign in ...";
+        document.getElementById("auth").style.display = "block";
+        document.getElementById("signrequest1").style.display = "none";
+        document.getElementById("signrequest2").style.display = "none";
+        document.getElementById("signrequest3").style.display = "none";
+        document.getElementById("signrequest4").style.display = "none";
+        document.getElementById("titol1").style.display = "none";
+        document.getElementById("signrequest5").style.display = "none";
+        document.getElementById("signrequest6").style.display = "none";
+        document.getElementById("signrequest7").style.display = "none";
+        document.getElementById("signrequest8").style.display = "none";
+        document.getElementById("signrequest9").style.display = "none";
+        document.getElementById("signrequest10").style.display = "none";
+        document.getElementById("signrequest11").style.display = "none";
+        document.getElementById("signrequest12").style.display = "none";
+        document.getElementById("signrequest13").style.display = "none";
+        document.getElementById("signrequest14").style.display = "none";
+        document.getElementById("signrequest15").style.display = "none";
+        document.getElementById("signrequest16").style.display = "none";
+        document.getElementById("signrequest17").style.display = "none";
+        document.getElementById("signrequest18").style.display = "none";
+        document.getElementById("signrequest19").style.display = "none";
+
+        document.getElementById("minterbuton").style.display = "none";
+        document.getElementById("minterfield").style.display = "none";
+        document.getElementById("signrequest20").style.display = "none";
+
+        document.getElementById("signrequest21").style.display = "none";
+        document.getElementById("signrequest22").style.display = "none";
+        document.getElementById("signrequest23").style.display = "none";
+        document.getElementById("signrequest24").style.display = "none";
+        document.getElementById("signrequest25").style.display = "none";
+        document.getElementById("signrequest26").style.display = "none";
+        document.getElementById("signrequest27").style.display = "none";
+        document.getElementById("signrequest28").style.display = "none";
+        document.getElementById("signrequest29").style.display = "none";
+        document.getElementById("signrequest30").style.display = "none";
+        document.getElementById("signrequest31").style.display = "none";
+        document.getElementById("signrequest32").style.display = "none";
+
+        document.getElementById("resultfield1").style.display = "none";
+        document.getElementById("getflags1").style.display = "none";
+        document.getElementById("logout").style.display = "none";
+        document.getElementById("goback").style.display = "none";
+      };
+
+      document.getElementById("getflags1").onclick = () => {
+        main();
+      };
+
+      xumm.on("error", (error) => console.log("error", error));
+      xumm.on("success", () => signedIn());
+      xumm.on("retrieved", () => signedIn());
+
+      async function main() {
+        let network = "wss://xahau.network";
+        let NetworkID = 21337;
+
+        const client = new xrpl.Client(network);
+        await client.connect();
+        const state = await xumm.state();
+        const wallet = state.me.sub;
+
+        const response = await client.request({
+          command: "account_info",
+          account: wallet,
+          ledger_index: "validated",
+        });
+
+        console.log(response);
+        document.getElementById("resultfield1").value =
+          "Flag: 1. RequireDest: " +
+          response.result.account_flags.requireDestinationTag +
+          " ;    " +
+          "\nFlag: 2. RequireAuth: " +
+          response.result.account_flags.requireAuthorization +
+          " ;    " +
+          "\nFlag: 3. DisallowXRP: " +
+          response.result.account_flags.disallowIncomingXRP +
+          " ;    " +
+          "\nFlag: 4. DisableMaster: " +
+          response.result.account_flags.disableMasterKey +
+          " ;    " +
+          "\nFlag: 5. AccountTxnID: Check an explorer. " +
+          response.result.account_flags.accountTxnID +
+          " ;" +
+          "\nFlag: 6. NoFreeze: " +
+          response.result.account_flags.noFreeze +
+          " ;" +
+          "\nFlag: 7. GlobalFreeze: " +
+          response.result.account_flags.globalFreeze +
+          " ;" +
+          "\nFlag: 8. DefaultRipple: " +
+          response.result.account_flags.defaultRipple +
+          " ;" +
+          "\nFlag: 9. DepositAuth: " +
+          response.result.account_flags.depositAuth +
+          " ;" +
+          "\nFlag: 10. AuthorizedNFTokenMinter: Check an explorer. " +
+          response.result.account_flags.authorizedNFTokenMinter +
+          " ;" +
+          "\nFlag: 11. TshCollect: Check an explorer. " +
+          response.result.account_flags.tshCollect +
+          " ;" +
+          "\nFlag: 12. DisallowIncomingNFTokenOffer: " +
+          response.result.account_flags.disallowIncomingNFTokenOffer +
+          " ;" +
+          "\nFlag: 13. DisallowIncomingCheck: " +
+          response.result.account_flags.disallowIncomingCheck +
+          " ;" +
+          "\nFlag: 14. DisallowIncomingPayChan: " +
+          response.result.account_flags.disallowIncomingPayChan +
+          " ;" +
+          "\nFlag: 15. DisallowIncomingTrustline: " +
+          response.result.account_flags.disallowIncomingTrustline +
+          " ;" +
+          "\nFlag: 16. DisallowIncomingRemit: " +
+          response.result.account_flags.disallowIncomingRemit +
+          " ;";
+        //console.log(flagNames(response.LedgerEntryType, response.Flags));
+      }
+    </script>
+    <script src="https://unpkg.com/xrpl@2.2.3"></script>
+
+    <script>
+      if (typeof module !== "undefined") {
+        const xrpl = require("xrpl");
+      }
+    </script>
+  </body>
+</html>
