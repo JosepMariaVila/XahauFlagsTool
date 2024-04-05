@@ -354,7 +354,7 @@
             <p align="left">
               <textarea
                 id="resultfield1"
-                cols="70"
+                cols="100"
                 rows="18"
                 style="display: none"
               ></textarea>
@@ -549,7 +549,7 @@
           window.open(payload.next.always);
         }
       };
-      document.getElementById("signrequest12").onclick = async () => {
+      /*  document.getElementById("signrequest12").onclick = async () => {
         const { sdk } = await xumm.state();
         const payload = await sdk.payload.create({
           TransactionType: "AccountSet",
@@ -558,7 +558,7 @@
         if (payload.pushed) {
           window.open(payload.next.always);
         }
-      };
+      };*/
 
       document.getElementById("signrequest13").onclick = async () => {
         const { sdk } = await xumm.state();
@@ -829,22 +829,32 @@
       xumm.on("success", () => signedIn());
       xumm.on("retrieved", () => signedIn());
 
-      async function main() {
-        let network = "wss://xahau.network";
-        let NetworkID = 21337;
+      //var xrpl = require("xrpl");
 
-        const client = new xrpl.Client(network);
+      async function main() {
+        const client = new xrpl.Client("wss://xahau.network");
         await client.connect();
         const state = await xumm.state();
         const wallet = state.me.sub;
 
+        /* async function main() {
+            let network = "wss://xahau.network";
+            let NetworkID = 21337;
+            const client = new xrpl.Client(network);
+            await client.connect();
+        const state = await xumm.state();
+        const wallet = state.me.sub;*/
+
         const response = await client.request({
           command: "account_info",
           account: wallet,
-          ledger_index: "validated",
         });
 
-        console.log(response);
+        console.log(response.result.account_flags);
+
+        //console.log(response.result.account_data.AccountTxnID);
+
+        //console.log(account_data.NFTokenMinter);
         document.getElementById("resultfield1").value =
           "Flag: 1. RequireDest: " +
           response.result.account_flags.requireDestinationTag +
@@ -858,9 +868,9 @@
           "\nFlag: 4. DisableMaster: " +
           response.result.account_flags.disableMasterKey +
           " ;    " +
-          "\nFlag: 5. AccountTxnID: Check an explorer. " +
-          response.result.account_flags.accountTxnID +
-          " ;" +
+          "\nFlag: 5. AccountTxnID (If 000... or a hash: true. If undefined: false):  " +
+          response.result.account_data.AccountTxnID +
+          " ;    " +
           "\nFlag: 6. NoFreeze: " +
           response.result.account_flags.noFreeze +
           " ;" +
@@ -873,8 +883,8 @@
           "\nFlag: 9. DepositAuth: " +
           response.result.account_flags.depositAuth +
           " ;" +
-          "\nFlag: 10. AuthorizedNFTokenMinter: Check an explorer. " +
-          response.result.account_flags.authorizedNFTokenMinter +
+          "\nFlag: 10. AuthorizedNFTokenMinter: Doesn't exist that feature yet. " +
+          response.result.account_data.NFTokenMinter +
           " ;" +
           "\nFlag: 11. TshCollect: Check an explorer. " +
           response.result.account_flags.tshCollect +
@@ -896,6 +906,71 @@
           " ;";
         //console.log(flagNames(response.LedgerEntryType, response.Flags));
       }
+
+      /*
+           main();
+
+                   const response = await client.request({
+                     //command: "account_info",
+                     //account: wallet,
+                     // ledger_index: "validated",
+                     command: "ledger_entry",
+                     account_root: wallet,
+                     ledger_index: "validated",
+                   });
+
+                   console.log(response);
+
+                   document.getElementById("resultfield1").value =
+                     /* "Flag: 1. RequireDest: " +
+                     response.result.account_flags.requireDestinationTag +
+                     " ;    " +
+                     "\nFlag: 2. RequireAuth: " +
+                     response.result.account_flags.requireAuthorization +
+                     " ;    " +
+                     "\nFlag: 3. DisallowXRP: " +
+                     response.result.account_flags.disallowIncomingXRP +
+                     " ;    " +
+                     "\nFlag: 4. DisableMaster: " +
+                     response.result.account_flags.disableMasterKey +
+                     " ;    " +
+                     "\nFlag: 5. AccountTxnID: Check an explorer. " +
+                     response.result.account_flags.accountTxnID +
+                     " ;" +
+                     "\nFlag: 6. NoFreeze: " +
+                     response.result.account_flags.noFreeze +
+                     " ;" +
+                     "\nFlag: 7. GlobalFreeze: " +
+                     response.result.account_flags.globalFreeze +
+                     " ;" +
+                     "\nFlag: 8. DefaultRipple: " +
+                     response.result.account_flags.defaultRipple +
+                     " ;" +
+                     "\nFlag: 9. DepositAuth: " +
+                     response.result.account_flags.depositAuth +
+                     " ;" +
+                     "\nFlag: 10. AuthorizedNFTokenMinter: " +
+                     response.result.node.NFTokenMinter +
+                     " ;";  +
+                     "\nFlag: 11. TshCollect: Check an explorer. " +
+                     response.result.account_flags.tshCollect +
+                     " ;" +
+                     "\nFlag: 12. DisallowIncomingNFTokenOffer: " +
+                     response.result.account_flags.disallowIncomingNFTokenOffer +
+                     " ;" +
+                     "\nFlag: 13. DisallowIncomingCheck: " +
+                     response.result.account_flags.disallowIncomingCheck +
+                     " ;" +
+                     "\nFlag: 14. DisallowIncomingPayChan: " +
+                     response.result.account_flags.disallowIncomingPayChan +
+                     " ;" +
+                     "\nFlag: 15. DisallowIncomingTrustline: " +
+                     response.result.account_flags.disallowIncomingTrustline +
+                     " ;" +
+                     "\nFlag: 16. DisallowIncomingRemit: " +
+                     response.result.account_flags.disallowIncomingRemit +
+                     " ;";*/
+      //console.log(flagNames(response.LedgerEntryType, response.Flags));*/
     </script>
     <script src="https://unpkg.com/xrpl@2.2.3"></script>
 
