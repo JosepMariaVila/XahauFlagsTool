@@ -302,45 +302,9 @@
       </button>
       <p></p>
 
-      <button
-        class="btn mb-3 btn-warning"
-        style="display: none"
-        id="minterbuton"
-      >
-        Paste the Authorized Minter you want to authorize:
-      </button>
-      <td>
-        <input
-          type="text"
-          style="display: none"
-          id="minterfield"
-          value=""
-          size="55"
-        />
-      </td>
       <p></p>
       <button
-        class="btn mb-3 btn-warning"
-        style="display: none"
-        id="signrequest19"
-      >
-        Click here to ENABLE Flag: 10. asfAuthorizedNFTokenMinter
-      </button>
-      <p></p>
-
-      <button
-        class="btn mb-3 btn-warning"
-        style="display: none"
-        id="signrequest20"
-      >
-        Click here to DISABLE/REMOVE a previous authorized minter. Flag: 10.
-        asfAuthorizedNFTokenMinter
-      </button>
-      <p></p>
-
-      <p></p>
-      <button
-        class="btn mb-3 btn-success btn-lg"
+        class="btn mb-3 btn-warning btn-lg"
         style="display: none"
         id="getflags1"
       >
@@ -355,7 +319,7 @@
               <textarea
                 id="resultfield1"
                 cols="100"
-                rows="18"
+                rows="16"
                 style="display: none"
               ></textarea>
             </p>
@@ -405,11 +369,6 @@
           document.getElementById("signrequest16").style.display = "block";
           document.getElementById("signrequest17").style.display = "block";
           document.getElementById("signrequest18").style.display = "block";
-          document.getElementById("signrequest19").style.display = "block";
-
-          document.getElementById("minterbuton").style.display = "block";
-          document.getElementById("minterfield").style.display = "block";
-          document.getElementById("signrequest20").style.display = "block";
 
           document.getElementById("signrequest21").style.display = "block";
           document.getElementById("signrequest22").style.display = "block";
@@ -623,29 +582,6 @@
         }
       };
 
-      document.getElementById("signrequest19").onclick = async () => {
-        const { sdk } = await xumm.state();
-        const payload = await sdk.payload.create({
-          TransactionType: "AccountSet",
-          NFTokenMinter: minterfield.value,
-          SetFlag: 10,
-        });
-        if (payload.pushed) {
-          window.open(payload.next.always);
-        }
-      };
-
-      document.getElementById("signrequest20").onclick = async () => {
-        const { sdk } = await xumm.state();
-        const payload = await sdk.payload.create({
-          TransactionType: "AccountSet",
-          ClearFlag: 10,
-        });
-        if (payload.pushed) {
-          window.open(payload.next.always);
-        }
-      };
-
       document.getElementById("signrequest21").onclick = async () => {
         const { sdk } = await xumm.state();
         const payload = await sdk.payload.create({
@@ -796,11 +732,6 @@
         document.getElementById("signrequest16").style.display = "none";
         document.getElementById("signrequest17").style.display = "none";
         document.getElementById("signrequest18").style.display = "none";
-        document.getElementById("signrequest19").style.display = "none";
-
-        document.getElementById("minterbuton").style.display = "none";
-        document.getElementById("minterfield").style.display = "none";
-        document.getElementById("signrequest20").style.display = "none";
 
         document.getElementById("signrequest21").style.display = "none";
         document.getElementById("signrequest22").style.display = "none";
@@ -829,21 +760,11 @@
       xumm.on("success", () => signedIn());
       xumm.on("retrieved", () => signedIn());
 
-      //var xrpl = require("xrpl");
-
       async function main() {
         const client = new xrpl.Client("wss://xahau.network");
         await client.connect();
         const state = await xumm.state();
         const wallet = state.me.sub;
-
-        /* async function main() {
-            let network = "wss://xahau.network";
-            let NetworkID = 21337;
-            const client = new xrpl.Client(network);
-            await client.connect();
-        const state = await xumm.state();
-        const wallet = state.me.sub;*/
 
         const response = await client.request({
           command: "account_info",
@@ -852,9 +773,6 @@
 
         console.log(response.result.account_flags);
 
-        //console.log(response.result.account_data.AccountTxnID);
-
-        //console.log(account_data.NFTokenMinter);
         document.getElementById("resultfield1").value =
           "Flag: 1. RequireDest: " +
           response.result.account_flags.requireDestinationTag +
@@ -883,9 +801,6 @@
           "\nFlag: 9. DepositAuth: " +
           response.result.account_flags.depositAuth +
           " ;" +
-          "\nFlag: 10. AuthorizedNFTokenMinter: Doesn't exist that feature yet. " +
-          response.result.account_data.NFTokenMinter +
-          " ;" +
           "\nFlag: 11. TshCollect: Check an explorer. " +
           response.result.account_flags.tshCollect +
           " ;" +
@@ -904,73 +819,7 @@
           "\nFlag: 16. DisallowIncomingRemit: " +
           response.result.account_flags.disallowIncomingRemit +
           " ;";
-        //console.log(flagNames(response.LedgerEntryType, response.Flags));
       }
-
-      /*
-           main();
-
-                   const response = await client.request({
-                     //command: "account_info",
-                     //account: wallet,
-                     // ledger_index: "validated",
-                     command: "ledger_entry",
-                     account_root: wallet,
-                     ledger_index: "validated",
-                   });
-
-                   console.log(response);
-
-                   document.getElementById("resultfield1").value =
-                     /* "Flag: 1. RequireDest: " +
-                     response.result.account_flags.requireDestinationTag +
-                     " ;    " +
-                     "\nFlag: 2. RequireAuth: " +
-                     response.result.account_flags.requireAuthorization +
-                     " ;    " +
-                     "\nFlag: 3. DisallowXRP: " +
-                     response.result.account_flags.disallowIncomingXRP +
-                     " ;    " +
-                     "\nFlag: 4. DisableMaster: " +
-                     response.result.account_flags.disableMasterKey +
-                     " ;    " +
-                     "\nFlag: 5. AccountTxnID: Check an explorer. " +
-                     response.result.account_flags.accountTxnID +
-                     " ;" +
-                     "\nFlag: 6. NoFreeze: " +
-                     response.result.account_flags.noFreeze +
-                     " ;" +
-                     "\nFlag: 7. GlobalFreeze: " +
-                     response.result.account_flags.globalFreeze +
-                     " ;" +
-                     "\nFlag: 8. DefaultRipple: " +
-                     response.result.account_flags.defaultRipple +
-                     " ;" +
-                     "\nFlag: 9. DepositAuth: " +
-                     response.result.account_flags.depositAuth +
-                     " ;" +
-                     "\nFlag: 10. AuthorizedNFTokenMinter: " +
-                     response.result.node.NFTokenMinter +
-                     " ;";  +
-                     "\nFlag: 11. TshCollect: Check an explorer. " +
-                     response.result.account_flags.tshCollect +
-                     " ;" +
-                     "\nFlag: 12. DisallowIncomingNFTokenOffer: " +
-                     response.result.account_flags.disallowIncomingNFTokenOffer +
-                     " ;" +
-                     "\nFlag: 13. DisallowIncomingCheck: " +
-                     response.result.account_flags.disallowIncomingCheck +
-                     " ;" +
-                     "\nFlag: 14. DisallowIncomingPayChan: " +
-                     response.result.account_flags.disallowIncomingPayChan +
-                     " ;" +
-                     "\nFlag: 15. DisallowIncomingTrustline: " +
-                     response.result.account_flags.disallowIncomingTrustline +
-                     " ;" +
-                     "\nFlag: 16. DisallowIncomingRemit: " +
-                     response.result.account_flags.disallowIncomingRemit +
-                     " ;";*/
-      //console.log(flagNames(response.LedgerEntryType, response.Flags));*/
     </script>
     <script src="https://unpkg.com/xrpl@2.2.3"></script>
 
